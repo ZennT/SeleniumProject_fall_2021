@@ -1,0 +1,102 @@
+******LOCATORS:
+***There are 8 locators:
+1. id
+2. name
+3. className
+4. tagName
+5. linkText
+6. partialLinkText
+
+
+7. xpath
+8. css
+----------------
+***How to locate elements?
+WebElement elementName = driver.findElement(By.id("id value"));
+EMAIL INPUT ELEMENT
+<input type="email" class="form-control" placeholder="Email" data-test="email" name="session[email]"
+id="session_email">
+* This element has an id
+* This is is unique
+* Then I can use this id to locate the element.
+----------------------------------
+SING IN BUTTON
+<input type="submit" name="commit" value="Sign in" class="btn btn-primary" data-test="submit" data-disable-with="Sign in">
+* There is no unique id
+* But there is a name that I can use
+driver.findElement(By.name("commit"));
+-----------------------------------
+EMAIL ID
+<span class="navbar-text" data-test="current-user">testtechproed@gmail.com</span>
+* There is no unique id
+* There is no unique name
+* There is a unique class
+driver.findElement(By.className("navbar-text"));
+------------------------------------
+ADDRESSES ELEMENT
+<a class="nav-item nav-link" data-test="addresses" href="/addresses">Addresses</a>
+* I cannot use id, name.
+* I can use class
+* I CAN ALSO USE LINKTEXT OR PARTIALLINKTEXT BECAUSE THIS IS A LINK!!!!
+driver.findElement(By.linkText("Addresses"));
+driver.findElement(By.paratialLinkText("Addresses"));
+*What is difference between linkText and partialLinkText???
+linkText accepts the full complete text with space and all....
+partialLinkText accepts the full complete text OR PART OF THE TEXT
+Be careful when using partialLinkText cause it may return the wrong element
+
+*****xpath
+There are 2 types of xpath?
+-Absolute -> go from parent to child using / . This is not recommended. Because it can be easily broken
+-Relative -> go straight to any element on the page using //. This is used a lot
+//tag[@attribute='value'];
+EMAIL INPUT:
+<input type="email" class="form-control" placeholder="Email" data-test="email" name="session[email]" id="session_email">
+Locating using relative xpath:
+//input[@id='session_email']
+//input[@type='email']
+.....
+----------------------------------
+*Which locator do you prefer? Why?
+-I prefer id, cause id is unique.
+-if there is no id, then i use other locators such as name.
+-if non of the regular locators works, then I write xpath
+-Cause I can write xpath for any element.
+-What i like about xpath is, i can use index number to select any element
+-I can also write dynamic xpath such as start-with, ends-with, contains.
+
+---------------
+//*[.='Welcome To Our Hotel'] --> is used only to find the text, is not used for partial texts
+//*[(text()=‘text name’)]
+//*[contains(text(),’piece of text’)]
+//tag[contains(@attribute,'value')] -->used to locate dynamic ones, you can use the value partially
+
+
+ornek;
+//tag[contains(@attribute,'value')]
+// <input class="form-control" placeholder="Password" data-test="password" type="password" name="session[password]" id="session_password">
+//     xpath --> //input[@class='form-control']   css --> input[class='form-control']  (no// and no@)
+                                                  css --> #UserName  (by id)
+                                                  css --> .navbar-brand (by class)
+                                                  no index for css, it is only for xpath
+  <input type="checkbox" checked="">
+  it shows checked
+
+  ----
+  1- daha once ogrendigimiz 6 locator daha spesifik webelementler icin kullanilabiliyordu.
+  2- xpath ve cssSelector ise tum webelementler icin kullanilabilir
+  3- xpath ve cssSelector her webelementinde bulunmasi zorunlu olan 3 ozelligi kullanarak
+  unique webelement’e ulasmaya calisir. Bu uc ozellik tag ismi, attribute ismi ve attribute
+  degeri’dir.
+  4- Eger bu ucluyu yazdigimizda birden fazla element bulunuyorsa index kullanabiliriz.
+  Index 1’den baslar
+  5- eger bir weblement link olmadigi halde text’e sahipse ozel bir xpath ile bu webelementi
+  locate edebiliriz
+  //tagIsmi[text()=‘textin tamami’]
+  6- locator yazilirken tagismi onemli degilse yerine * yazilabilir
+  7- xpath ve cssselector birbirine cok benzemekle birlikte xpath daha cok kullanilir
+
+
+
+
+
